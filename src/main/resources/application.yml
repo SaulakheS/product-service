@@ -1,0 +1,34 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: product-service
+  profiles:
+    active: dev
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+app:
+  jwt:
+    # Secret must be at least 256-bit (32 bytes) for HMAC-SHA256
+    secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+    expiration-ms: 3600000 # 1 hour (60 * 60 * 1000)
+    refresh-expiration-ms: 604800000 # 7 days (7 * 24 * 60 * 60 * 1000)
+  cors:
+    allowed-origins: "http://localhost:3000,http://localhost:8080"
+    allowed-methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS"
+    allowed-headers: "*"
+    allow-credentials: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
